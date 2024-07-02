@@ -6,7 +6,6 @@
         <file>src/images/chicken3.png</file>
         <file>src/images/chicken4.png</file>
         <file>src/images/drumsticChickenone.png</file>
-        <file>src/images/egg.png</file>
         <file>src/images/explosion_PNG15391.png</file>
         <file>src/images/fEgg.png</file>
         <file>src/images/gift.png</file>
@@ -18,5 +17,6 @@
         <file>src/images/superchicken2.png</file>
         <file>src/images/superchicken3.png</file>
         <file>src/images/superchicken4.png</file>
+        <file>src/images/egg.png</file>
     </qresource>
 </RCC>

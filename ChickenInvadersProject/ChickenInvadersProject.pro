@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Start_Menu.cpp \
+    game.cpp \
     main.cpp
 
 HEADERS += \
-    Start_Menu.h
+    Start_Menu.h \
+    game.h
 
 FORMS +=
 

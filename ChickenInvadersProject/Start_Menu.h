@@ -2,13 +2,24 @@
 #define START_MENU_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QVBoxLayout>
 
-class Start_menu : public QMainWindow
-{
+class Start_menu : public QMainWindow {
     Q_OBJECT
 
+
 public:
-    Start_menu(QWidget *parent = nullptr);
+
+    int button_width;
+    int button_height;
+
+    QPushButton  *Exit ;
+    QPushButton  *Start;
+
+    Start_menu();
+
     ~Start_menu();
+
 };
 #endif // START_MENU_H
