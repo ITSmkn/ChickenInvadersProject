@@ -1,5 +1,7 @@
 #include "Start_Menu.h"
+#include "game.h"
 
+extern Game *game;
 
 Start_menu::Start_menu(){
 
@@ -16,6 +18,8 @@ Start_menu::Start_menu(){
     this->layout()->addWidget(Start);
     Start->setFocusPolicy(Qt::FocusPolicy::NoFocus);
 
+    connect(Start , &QPushButton::clicked , this , &Start_menu::Start_Game);
+
 
     Exit = new QPushButton("Exit" , this);
     this->layout()->addWidget(Exit);
@@ -26,7 +30,7 @@ Start_menu::Start_menu(){
 
     // applying the changes to the buttons and so on ...
 
-    setStyleSheet("QMainWindow{background-image:url(:/images/src/images/mainbackround.png);}"
+    setStyleSheet("QMainWindow{background-image:url(:/images/src/images/mainBg.png);}"
                            "QPushButton{background-color: rgba(244, 40, 11, 180);"
                            "color:rgb(255, 255, 255);"
                            "border-top-right-radius:40;border-bottom-left-radius:40;"
@@ -45,4 +49,11 @@ Start_menu::~Start_menu()
 
 void Start_menu::F_exit(){
     exit(0);
+}
+
+void Start_menu::Start_Game()
+{
+    game = new Game(width() , height());
+    game->show();
+    this->hide();
 }

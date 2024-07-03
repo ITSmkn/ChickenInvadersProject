@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QDebug>
+#include "game.h"
 
 class Start_menu : public QMainWindow {
     Q_OBJECT
@@ -20,9 +22,12 @@ public:
 
     ~Start_menu();
 
+
+
 private slots:
 
     void F_exit();
+    void Start_Game();
 
 };
 #endif // START_MENU_H
