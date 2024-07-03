@@ -8,7 +8,6 @@
 class Start_menu : public QMainWindow {
     Q_OBJECT
 
-
 public:
 
     int button_width;
@@ -20,6 +19,10 @@ public:
     Start_menu();
 
     ~Start_menu();
+
+private slots:
+
+    void F_exit();
 
 };
 #endif // START_MENU_H
