@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QDebug>
+
 #include "game.h"
 
 class Start_menu : public QMainWindow {
@@ -19,9 +20,7 @@ public:
     QPushButton  *Start;
 
     Start_menu();
-
     ~Start_menu();
-
 
 
 private slots:

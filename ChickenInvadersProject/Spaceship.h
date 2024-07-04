@@ -1,13 +1,15 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
+#include <QGraphicsPixmapItem>
 
-class SpaceShip{
+class SpaceShip : public QGraphicsPixmapItem{
+private:
+    int lives;
 
 public:
 
     SpaceShip();
-
     ~SpaceShip();
 
 };
