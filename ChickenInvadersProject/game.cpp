@@ -39,6 +39,9 @@ void Game::SceneSet(){
 
     auto chicken = new Chicken(880, 500);
     scene->addItem(chicken);
+
+    // these timers make their connected functions work every (n) ms...
+    ship_time->start(45);
 }
 
 int Game::get_Width(){
@@ -57,3 +60,10 @@ void Game::set_Height(int h){
     Height = h;
 }
 
+void Game::mousePressEvent(QMouseEvent* event){
+
+    if (event->button() == Qt::LeftButton){
+         ship->shoot();
+     }
+
+}

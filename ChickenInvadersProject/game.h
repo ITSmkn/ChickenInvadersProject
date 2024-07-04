@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QDebug>
+#include <QMouseEvent>
 
 #include "Spaceship.h"
 #include "Chicken.h"
@@ -33,6 +34,9 @@ public:
 
      void set_Width(int w);
      void set_Height(int h);
+
+     // for shooting ...
+     void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // GAME_H

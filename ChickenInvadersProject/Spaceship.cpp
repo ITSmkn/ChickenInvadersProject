@@ -29,7 +29,7 @@ void SpaceShip::shoot(){
     // creating Rocket ...
 
     rocket = new Rocket(time);
-    rocket->setPos(x()+45,y()-150);
+    rocket->setPos(x()+50,y()-110);
 
     scene()->addItem(rocket);
 }

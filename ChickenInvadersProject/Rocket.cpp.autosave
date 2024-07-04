@@ -16,13 +16,13 @@ Rocket::Rocket(QTimer* t):time(t){
 
 void Rocket::move(){
 
-    //these x() and y() are the position of the rocket in the game view ...
+    //these x() and y() show the position of the rocket in the game view ...
     if(y() > 0){
         setPos(x(),y() - 50);
     }
 
     if(y() < 0){
         scene()->removeItem(this);
-        delete this;
+        delete this;  // destructor is not needed ...
     }
 }
