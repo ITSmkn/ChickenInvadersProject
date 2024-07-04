@@ -6,6 +6,7 @@
 #include <QDebug>
 
 #include "Spaceship.h"
+#include "Chicken.h"
 
 // this class is actually related to the main game screen
 

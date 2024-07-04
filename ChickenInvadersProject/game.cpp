@@ -33,6 +33,9 @@ void Game::SceneSet(){
 
     ship = new SpaceShip();
     scene->addItem(ship);
+
+    auto chicken = new Chicken(880, 500);
+    scene->addItem(chicken);
 }
 
 int Game::get_Width(){

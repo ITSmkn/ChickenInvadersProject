@@ -16,12 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Chicken.cpp \
+    Enemy.cpp \
     Spaceship.cpp \
     Start_Menu.cpp \
     game.cpp \
     main.cpp
 
 HEADERS += \
+    Chicken.h \
+    Enemy.h \
     Spaceship.h \
     Start_Menu.h \
     game.h
