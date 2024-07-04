@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Chicken.cpp \
     Enemy.cpp \
+    Rocket.cpp \
     Spaceship.cpp \
     Start_Menu.cpp \
     game.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 HEADERS += \
     Chicken.h \
     Enemy.h \
+    Rocket.h \
     Spaceship.h \
     Start_Menu.h \
     game.h

@@ -15,6 +15,7 @@ Game::Game(int width , int height):Width(width),Height(height){
 Game::~Game(){
     delete scene;
     delete ship;
+    delete ship_time;
 }
 
 
@@ -31,7 +32,9 @@ void Game::SceneSet(){
     //setting background to the main game screen
     setBackgroundBrush(QPixmap(":/images/src/images/Level1Bg.png"));
 
-    ship = new SpaceShip();
+    ship_time = new QTimer;
+
+    ship = new SpaceShip(ship_time);
     scene->addItem(ship);
 
     auto chicken = new Chicken(880, 500);

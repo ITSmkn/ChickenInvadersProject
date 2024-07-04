@@ -1,0 +1,10 @@
+release/Chicken.o
+release/Enemy.o
+release/Rocket.o
+release/Spaceship.o
+release/Start_Menu.o
+release/game.o
+release/main.o
+release/qrc_Src.o
+release/moc_Rocket.o
+release/moc_Start_Menu.o

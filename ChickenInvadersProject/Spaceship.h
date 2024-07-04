@@ -2,15 +2,25 @@
 #define SPACESHIP_H
 
 #include <QGraphicsPixmapItem>
+#include "Rocket.h"
 
 class SpaceShip : public QGraphicsPixmapItem{
+
 private:
+
     int lives;
 
 public:
 
-    SpaceShip();
+    SpaceShip(QTimer* t);
     ~SpaceShip();
+
+    Rocket* rocket;
+    QTimer* time;
+
+    int get_lives();
+    void set_lives(int);
+    void shoot();
 
 };
 

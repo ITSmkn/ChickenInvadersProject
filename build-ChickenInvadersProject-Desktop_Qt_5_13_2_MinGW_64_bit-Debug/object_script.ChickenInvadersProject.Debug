@@ -1,0 +1,10 @@
+debug/Chicken.o
+debug/Enemy.o
+debug/Rocket.o
+debug/Spaceship.o
+debug/Start_Menu.o
+debug/game.o
+debug/main.o
+debug/qrc_Src.o
+debug/moc_Rocket.o
+debug/moc_Start_Menu.o

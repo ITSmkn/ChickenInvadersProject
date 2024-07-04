@@ -7,6 +7,7 @@
 
 #include "Spaceship.h"
 #include "Chicken.h"
+#include "Rocket.h"
 
 // this class is actually related to the main game screen
 
@@ -17,7 +18,9 @@ private:
     QGraphicsScene * scene;
 
 public:
+
      SpaceShip *ship;
+     QTimer *ship_time;
 
      Game(int width , int height);
     ~Game();
