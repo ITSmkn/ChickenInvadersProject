@@ -32,10 +32,18 @@ void Game::SceneSet(){
     //setting background to the main game screen
     setBackgroundBrush(QPixmap(":/images/src/images/Level1Bg.png"));
 
+    //removing the cursor
+    QCursor csr(Qt::BlankCursor);
+    setCursor(csr);
+
     ship_time = new QTimer;
 
     ship = new SpaceShip(ship_time);
     scene->addItem(ship);
+
+    //cursor tracker was enabled
+    setMouseTracking(true);
+    setFocus();
 
     auto chicken = new Chicken(880, 500);
     scene->addItem(chicken);
@@ -65,5 +73,8 @@ void Game::mousePressEvent(QMouseEvent* event){
     if (event->button() == Qt::LeftButton){
          ship->shoot();
      }
+}
 
+void Game::mouseMoveEvent(QMouseEvent *event){
+    ship->setPos(event->x(), event->y()-35);
 }

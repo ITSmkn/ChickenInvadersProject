@@ -37,6 +37,9 @@ public:
 
      // for shooting ...
      void mousePressEvent(QMouseEvent* event);
+
+     //for ship movement
+     void mouseMoveEvent(QMouseEvent *Event);
 };
 
 #endif // GAME_H

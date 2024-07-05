@@ -4,6 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include "Rocket.h"
 
+
 class SpaceShip : public QGraphicsPixmapItem{
 
 private:

@@ -15,8 +15,7 @@ SpaceShip::~SpaceShip(){
 
 }
 
-int SpaceShip::get_lives()
-{
+int SpaceShip::get_lives(){
     return lives;
 }
 
@@ -33,4 +32,3 @@ void SpaceShip::shoot(){
 
     scene()->addItem(rocket);
 }
-

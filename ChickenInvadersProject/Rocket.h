@@ -7,7 +7,7 @@
 
 
 class Rocket :public QObject ,public QGraphicsPixmapItem{
-
+private:
     Q_OBJECT
 
 public:
@@ -22,5 +22,7 @@ public slots:
     //function for rocket's movement (will be connected to the time) ...
     void move();
 };
+
+
 
 #endif // ROCKET_H

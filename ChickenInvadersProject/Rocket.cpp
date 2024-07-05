@@ -10,7 +10,6 @@ Rocket::Rocket(QTimer* t):time(t){
 
     //connecting the function move to time vlaue ...
     connect(time,SIGNAL(timeout()),this,SLOT(move()));
-
 }
 
 
@@ -21,7 +20,7 @@ void Rocket::move(){
         setPos(x(),y() - 50);
     }
 
-    if(y() < 0){
+    else{
         scene()->removeItem(this);
         delete this;
     }
