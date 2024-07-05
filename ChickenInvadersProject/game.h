@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <QMouseEvent>
+#include <QPushButton>
 
 #include "Spaceship.h"
 #include "Chicken.h"
@@ -22,6 +23,7 @@ public:
 
      SpaceShip *ship;
      QTimer *ship_time;
+     QPushButton  *pause ;
 
      Game(int width , int height);
     ~Game();

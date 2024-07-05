@@ -9,7 +9,7 @@ class SpaceShip : public QGraphicsPixmapItem{
 
 private:
 
-    int lives;
+    int lives = 3;
 
 public:
 

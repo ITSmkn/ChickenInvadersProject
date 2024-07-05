@@ -3,5 +3,5 @@
 
 Chicken::Chicken(int X, int Y) : Enemy(X, Y){
     setPixmap(QPixmap(":/images/src/images/chicken1.png"));
-    setPos(880, 500);
+    setPos(X, Y);
 }
