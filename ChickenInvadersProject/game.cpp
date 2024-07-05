@@ -1,5 +1,6 @@
 #include "game.h"
 #include "Start_Menu.h"
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
@@ -37,82 +38,93 @@ void Game::SceneSet(){
     setCursor(csr);
 
     ship_time = new QTimer;
+    chicken_time = new QTimer;
+
+    // these timers make their connected functions work every (n) ms ...
+    // giving value to them ...
+    ship_time->start(45);
+    chicken_time->start(100);
 
     ship = new SpaceShip(ship_time);
     scene->addItem(ship);
+
+
 
     //cursor tracker was enabled
     setMouseTracking(true);
     setFocus();
 
-    auto chicken1 = new Chicken(620, 100);
+
+
+    auto chicken1 = new Chicken(620, 100, chicken_time);
     scene->addItem(chicken1);
 
-    auto chicken2 = new Chicken(760, 100);
+    auto chicken2 = new Chicken(760, 100, chicken_time);
     scene->addItem(chicken2);
 
-    auto chicken3 = new Chicken(900, 100);
+    auto chicken3 = new Chicken(900, 100, chicken_time);
     scene->addItem(chicken3);
 
-    auto chicken4 = new Chicken(1040, 100);
+    auto chicken4 = new Chicken(1040, 100, chicken_time);
     scene->addItem(chicken4);
 
-    auto chicken5 = new Chicken(1180, 100);
+    auto chicken5 = new Chicken(1180, 100, chicken_time);
     scene->addItem(chicken5);
 
-    auto chicken6 = new Chicken(620, 220);
+    auto chicken6 = new Chicken(620, 220, chicken_time);
     scene->addItem(chicken6);
 
-    auto chicken7 = new Chicken(760, 220);
+    auto chicken7 = new Chicken(760, 220, chicken_time);
     scene->addItem(chicken7);
 
-    auto chicken8 = new Chicken(900, 220);
+    auto chicken8 = new Chicken(900, 220, chicken_time);
     scene->addItem(chicken8);
 
-    auto chicken9 = new Chicken(1040, 220);
+    auto chicken9 = new Chicken(1040, 220, chicken_time);
     scene->addItem(chicken9);
 
-    auto chicken10 = new Chicken(1180, 220);
+    auto chicken10 = new Chicken(1180, 220, chicken_time);
     scene->addItem(chicken10);
 
-    auto chicken11 = new Chicken(620, 340);
+    auto chicken11 = new Chicken(620, 340, chicken_time);
     scene->addItem(chicken11);
 
-    auto chicken12 = new Chicken(760, 340);
+    auto chicken12 = new Chicken(760, 340, chicken_time);
     scene->addItem(chicken12);
 
-    auto chicken13 = new Chicken(900, 340);
+    auto chicken13 = new Chicken(900, 340, chicken_time);
     scene->addItem(chicken13);
 
-    auto chicken14 = new Chicken(1040, 340);
+    auto chicken14 = new Chicken(1040, 340, chicken_time);
     scene->addItem(chicken14);
 
-    auto chicken15 = new Chicken(1180, 340);
+    auto chicken15 = new Chicken(1180, 340, chicken_time);
     scene->addItem(chicken15);
 
-    auto chicken16 = new Chicken(620, 460);
+    auto chicken16 = new Chicken(620, 460, chicken_time);
     scene->addItem(chicken16);
 
-    auto chicken17 = new Chicken(760, 460);
+    auto chicken17 = new Chicken(760, 460, chicken_time);
     scene->addItem(chicken17);
 
-    auto chicken18 = new Chicken(900, 460);
+    auto chicken18 = new Chicken(900, 460, chicken_time);
     scene->addItem(chicken18);
 
-    auto chicken19 = new Chicken(1040, 460);
+    auto chicken19 = new Chicken(1040, 460, chicken_time);
     scene->addItem(chicken19);
 
-    auto chicken20 = new Chicken(1180, 460);
+    auto chicken20 = new Chicken(1180, 460, chicken_time);
     scene->addItem(chicken20);
 
-    // these timers make their connected functions work every (n) ms...
-    ship_time->start(45);
+
 
     //make pause button
     pause = new QPushButton( "| |" , this);
     pause->setGeometry(x() + 1830, y()*2 + 10 , 80 , 80);
     scene->addWidget(pause);
     pause->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+
+
 
     //connect(pause , &QPushButton::clicked , this , &SceneSet::pause_game);
 

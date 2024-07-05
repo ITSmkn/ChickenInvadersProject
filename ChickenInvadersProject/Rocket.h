@@ -7,7 +7,7 @@
 
 
 class Rocket :public QObject ,public QGraphicsPixmapItem{
-private:
+
     Q_OBJECT
 
 public:

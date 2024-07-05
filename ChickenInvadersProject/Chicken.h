@@ -2,14 +2,21 @@
 #define CHICKEN_H
 
 #include <QGraphicsPixmapItem>
+#include <QObject>
+#include <QTimer>
 #include "Enemy.h"
-#include "game.h"
 
 class Chicken : public Enemy{
-private:
 
+    Q_OBJECT
 public:
-    Chicken(int n1, int n2);
+
+    Chicken(int n1, int n2 , QTimer* t);
+
+public slots:
+//     overriding wiggle for Chicken class ...
+    void wiggle() override;
+
 };
 
 

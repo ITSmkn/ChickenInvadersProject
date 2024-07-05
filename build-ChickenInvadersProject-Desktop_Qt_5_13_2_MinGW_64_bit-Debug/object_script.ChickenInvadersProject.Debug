@@ -6,5 +6,8 @@ debug/Start_Menu.o
 debug/game.o
 debug/main.o
 debug/qrc_Src.o
+debug/moc_Chicken.o
+debug/moc_Enemy.o
 debug/moc_Rocket.o
 debug/moc_Start_Menu.o
+debug/moc_game.o

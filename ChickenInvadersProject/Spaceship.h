@@ -7,6 +7,7 @@
 
 class SpaceShip : public QGraphicsPixmapItem{
 
+
 private:
 
     int lives = 3;

@@ -8,22 +8,25 @@
 #include <QPushButton>
 
 #include "Spaceship.h"
+#include "Enemy.h"
 #include "Chicken.h"
 #include "Rocket.h"
 
 // this class is actually related to the main game screen
 
 class Game : public QGraphicsView{
-
+    Q_OBJECT
 private:
     int Width , Height;
     QGraphicsScene * scene;
 
 public:
 
-     SpaceShip *ship;
-     QTimer *ship_time;
-     QPushButton  *pause ;
+     SpaceShip* ship;
+     QTimer* ship_time;
+     QTimer* chicken_time;
+
+     QPushButton* pause;
 
      Game(int width , int height);
     ~Game();
