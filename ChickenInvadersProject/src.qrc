@@ -16,5 +16,6 @@
         <file>src/images/SpaceShip.png</file>
         <file>src/images/SuperChicken1.png</file>
         <file>src/images/SuperChicken2.png</file>
+        <file>src/images/lose.png</file>
     </qresource>
 </RCC>

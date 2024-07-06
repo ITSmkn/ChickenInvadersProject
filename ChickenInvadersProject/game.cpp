@@ -8,6 +8,8 @@
 extern Game *game;
 
 Game::Game(int width , int height):Width(width),Height(height),score(0){
+    isCrashed = false;
+    isLost = false;
 
  SceneSet();
  set_gameTime(); //the begining of time counter ...
@@ -30,7 +32,7 @@ Game::~Game(){
 
 
 void Game::SceneSet(){
-
+    if(isLost == false){
     scene = new QGraphicsScene();
     setScene(scene);
     scene->setSceneRect(0,0,Width,Height);
@@ -47,6 +49,8 @@ void Game::SceneSet(){
     QCursor csr(Qt::BlankCursor);
     setCursor(csr);
 
+
+
     ship_time = new QTimer;
     chicken_time = new QTimer;
 
@@ -56,9 +60,11 @@ void Game::SceneSet(){
     chicken_time->start(125);
 
     ship = new SpaceShip(ship_time);
-    scene->addItem(ship);
     ship->setFlag(QGraphicsItem::ItemIsFocusable);
     ship->setFocus();
+
+    scene->addItem(ship);
+
 
     //setting font
     lives_font = new QFont("Arial", 25);
@@ -160,6 +166,11 @@ void Game::SceneSet(){
                   "QPushButton:hover{background-color: rgba(29, 61, 239, 220);}"
                   "QPushButton:pressed{background-color: rgba(0, 0, 64, 200);}");
 }
+    else{
+    // handle losing ...
+    show_LoseBoard();
+    }
+}
 
 //getters
 int Game::get_Width(){
@@ -199,9 +210,16 @@ void Game::set_gameTime(){
 }
 
 void Game::time_counter(){
+
     // increasing our counter ...
     ++time_count;
 
+    // returning to main menu due to losing ...
+    if(lose_time + 4 == time_count && isLost){
+        Start_menu *sm = new Start_menu();
+        sm->show();
+        game->close();
+    }
 
     // setting spaceship's condition to default (after crashing) ...
     if(collide_time == (time_count -2) && isCrashed == true){
@@ -223,6 +241,24 @@ void Game::mousePressEvent(QMouseEvent* event){
 
 void Game::mouseMoveEvent(QMouseEvent *event){
     ship->setPos(event->x(), event->y()-35);
+}
+
+void Game::lose()
+{
+    isLost = true;
+    lose_time = time_count;
+    SceneSet();              // it turns back to set scene and shows lost board ...
+    ship->hide();
+    lives_board -> hide();
+}
+
+void Game::show_LoseBoard(){
+    if(isLost){
+        QPixmap image(":/images/src/images/lose.png");
+        QGraphicsPixmapItem* lose_pic = new QGraphicsPixmapItem(image);
+        lose_pic->setPos(500,470);
+        scene->addItem(lose_pic);
+    }
 }
 
 void Game::show_lives(){

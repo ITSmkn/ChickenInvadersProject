@@ -29,6 +29,9 @@ void SpaceShip::set_lives(int n1){
 
 void SpaceShip::shoot(){
 
+    if(game->isLost == true){   // when we lose shooting will be disabled ...
+        return;
+    }
     // creating Rocket ...
 
     rocket = new Rocket(time);
@@ -39,6 +42,7 @@ void SpaceShip::shoot(){
     // to check if it has hit enemies ...
 
 }
+
 
 void SpaceShip::detect_collide(){
     // the list which contains colliding items ...
@@ -58,9 +62,15 @@ void SpaceShip::detect_collide(){
             setPixmap(QPixmap(":/images/src/images/explosion.png"));
             // making the spaceship stand still when crashed...
             game->setMouseTracking(false);
+
+            //check losing ...
+            if(lives == 0){
+            game->lose();
+            }
         }
     }
 
+   //to change lives  ...
    game->check_status();
 
 

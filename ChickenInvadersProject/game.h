@@ -37,7 +37,10 @@ public:
 
     int time_count;   // to count time...
     int collide_time; // saving time_count whenever spaceship collide...
-    bool isCrashed = false;  // for demonstrating spaceship condition(whether it has collided or ..)...
+    int lose_time;
+
+    bool isCrashed ;  // for demonstrating spaceship condition(whether it has collided or ..)...
+    bool isLost ;
 
     // other variable ...
 
@@ -79,13 +82,17 @@ public:
      //showing spaceship score(initial setting)
      void show_score();
 
+
+     void show_LoseBoard();
+
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();
 
      //to set timer for game class
      void set_gameTime();
 
-
+     //to handle losing
+     void lose();
 
 
 };
