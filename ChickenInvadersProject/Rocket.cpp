@@ -1,6 +1,7 @@
 #include "Rocket.h"
 #include "game.h"
-#include "Chicken.h"
+
+
 
 extern Game* game; // it should be here because the move function that we defined ...
 
@@ -44,4 +45,6 @@ void Rocket::move(){
         scene()->removeItem(this);
         delete this;
     }
+
+    game->check_status();
 }

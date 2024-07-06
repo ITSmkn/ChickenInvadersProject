@@ -7,13 +7,15 @@
 
 extern Game *game;
 
-Game::Game(int width , int height):Width(width),Height(height){
+Game::Game(int width , int height):Width(width),Height(height),score(0){
 
  SceneSet();
+ set_gameTime(); //the begining of time counter ...
 
 }
 
 Game::~Game(){
+
     delete scene;
     delete ship;
     delete ship_time;
@@ -22,6 +24,8 @@ Game::~Game(){
     delete lives_font;
     delete score_board;
     delete score_font;
+    delete game_time;
+
 }
 
 
@@ -38,6 +42,7 @@ void Game::SceneSet(){
     //setting background to the main game screen
     setBackgroundBrush(QPixmap(":/images/src/images/Level1Bg.png"));
 
+
     //removing the cursor
     QCursor csr(Qt::BlankCursor);
     setCursor(csr);
@@ -52,6 +57,8 @@ void Game::SceneSet(){
 
     ship = new SpaceShip(ship_time);
     scene->addItem(ship);
+    ship->setFlag(QGraphicsItem::ItemIsFocusable);
+    ship->setFocus();
 
     //setting font
     lives_font = new QFont("Arial", 25);
@@ -181,6 +188,32 @@ void Game::set_score(int s){
 }
 
 //other methods
+
+
+void Game::set_gameTime(){
+
+    game_time = new QTimer;
+    connect(game_time,SIGNAL(timeout()),this,SLOT(time_counter()));
+    game_time->start(1000);
+
+}
+
+void Game::time_counter(){
+    // increasing our counter ...
+    ++time_count;
+
+
+    // setting spaceship's condition to default (after crashing) ...
+    if(collide_time == (time_count -2) && isCrashed == true){
+       ship->setPixmap(QPixmap(":/images/src/images/SpaceShip.png"));
+       ship->setPos(880,800);
+       setMouseTracking(true);
+       isCrashed = false;
+    }
+
+}
+
+
 void Game::mousePressEvent(QMouseEvent* event){
 
     if (event->button() == Qt::LeftButton){

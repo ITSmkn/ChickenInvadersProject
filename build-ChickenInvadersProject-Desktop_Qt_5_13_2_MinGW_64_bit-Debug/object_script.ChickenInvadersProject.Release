@@ -9,5 +9,6 @@ release/qrc_Src.o
 release/moc_Chicken.o
 release/moc_Enemy.o
 release/moc_Rocket.o
+release/moc_Spaceship.o
 release/moc_Start_Menu.o
 release/moc_game.o

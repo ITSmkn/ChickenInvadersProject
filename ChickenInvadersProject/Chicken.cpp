@@ -1,4 +1,7 @@
 #include "Chicken.h"
+#include "game.h"
+
+extern Game* game;
 
 
 Chicken::Chicken(int X, int Y , QTimer* t) : Enemy(X, Y, t){

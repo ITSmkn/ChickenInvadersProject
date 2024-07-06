@@ -2,12 +2,16 @@
 #define SPACESHIP_H
 
 #include <QGraphicsPixmapItem>
+#include <QList>
+#include <QObject>
+#include <QMouseEvent>
+
 #include "Rocket.h"
 
 
-class SpaceShip : public QGraphicsPixmapItem{
+class SpaceShip :public QObject,public QGraphicsPixmapItem{
 
-
+    Q_OBJECT
 private:
 
     int lives = 3;
@@ -23,6 +27,9 @@ public:
     int get_lives();
     void set_lives(int);
     void shoot();
+
+public slots:
+    void detect_collide();
 };
 
 #endif // SPACESHIP_H

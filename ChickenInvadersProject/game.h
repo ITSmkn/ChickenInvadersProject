@@ -17,23 +17,41 @@
 // this class is actually related to the main game screen
 
 class Game : public QGraphicsView{
+
     Q_OBJECT
+
 private:
+
     int Width , Height;
     int level;
-    int score = 0;
+    int score;
+
     QGraphicsScene * scene;
 
+public slots:
+    //the function that will be connected to timer(+1 to time_count every 1 sec)...
+    void time_counter();
+
 public:
+    // two important variable ...
+
+    int time_count;   // to count time...
+    int collide_time; // saving time_count whenever spaceship collide...
+    bool isCrashed = false;  // for demonstrating spaceship condition(whether it has collided or ..)...
+
+    // other variable ...
 
      SpaceShip* ship;
      QTimer* ship_time;
      QTimer* chicken_time;
+     QTimer* game_time;
      QGraphicsTextItem *lives_board;
      QFont *lives_font;
      QGraphicsTextItem *score_board;
      QFont *score_font;
      QPushButton* pause;
+
+     // Functions...
 
      Game(int width , int height);
     ~Game();
@@ -63,6 +81,13 @@ public:
 
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();
+
+     //to set timer for game class
+     void set_gameTime();
+
+
+
+
 };
 
 #endif // GAME_H

@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
-#include <QDebug>
 
 Game *game;
 
