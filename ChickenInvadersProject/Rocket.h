@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include <QList>
+
+#include "Chicken.h"
 
 
 class Rocket :public QObject ,public QGraphicsPixmapItem{

@@ -16,10 +16,13 @@ public:
 
     int get_FoeLives();
 
+    //a function to handle enemies lives
+    virtual void decrease_FoeLives() = 0;//(abstract)
+
 public slots:
 
     // the function for enemies wiggling ... (abstract)
-    virtual void wiggle();
+    virtual void wiggle() = 0;
 
 protected:
     int x, y;

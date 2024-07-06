@@ -21,6 +21,7 @@ class Game : public QGraphicsView{
 private:
     int Width , Height;
     int level;
+    int score = 0;
     QGraphicsScene * scene;
 
 public:
@@ -30,6 +31,8 @@ public:
      QTimer* chicken_time;
      QGraphicsTextItem *lives_board;
      QFont *lives_font;
+     QGraphicsTextItem *score_board;
+     QFont *score_font;
      QPushButton* pause;
 
      Game(int width , int height);
@@ -40,9 +43,11 @@ public:
      // other functions ...
      int get_Width();
      int get_Height();
+     int get_score();
 
      void set_Width(int w);
      void set_Height(int h);
+     void set_score(int s);
 
      // for shooting ...
      void mousePressEvent(QMouseEvent* event);
@@ -52,6 +57,9 @@ public:
 
      //showing spaceship lives(initial setting)
      void show_lives();
+
+     //showing spaceship score(initial setting)
+     void show_score();
 
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();

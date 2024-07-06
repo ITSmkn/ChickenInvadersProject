@@ -20,6 +20,8 @@ Game::~Game(){
     delete chicken_time;
     delete lives_board;
     delete lives_font;
+    delete score_board;
+    delete score_font;
 }
 
 
@@ -55,9 +57,15 @@ void Game::SceneSet(){
     lives_font = new QFont("Arial", 25);
     lives_font->setBold(true);
 
+    score_font = new QFont("Arial", 30);
+    score_font->setBold(true);
+
     //setting boards
     show_lives();
     scene->addItem(lives_board);
+
+    show_score();
+    scene->addItem(score_board);
 
     //cursor tracker was enabled
     setMouseTracking(true);
@@ -146,6 +154,7 @@ void Game::SceneSet(){
                   "QPushButton:pressed{background-color: rgba(0, 0, 64, 200);}");
 }
 
+//getters
 int Game::get_Width(){
     return Width;
 }
@@ -154,6 +163,11 @@ int Game::get_Height(){
     return Height;
 }
 
+int Game::get_score(){
+    return score;
+}
+
+//setters
 void Game::set_Width(int w){
     Width = w;
 }
@@ -162,6 +176,11 @@ void Game::set_Height(int h){
     Height = h;
 }
 
+void Game::set_score(int s){
+    score = s;
+}
+
+//other methods
 void Game::mousePressEvent(QMouseEvent* event){
 
     if (event->button() == Qt::LeftButton){
@@ -181,7 +200,17 @@ void Game::show_lives(){
     lives_board->setFont(*lives_font);
 }
 
+void Game::show_score(){
+    score_board = new QGraphicsTextItem;
+    score_board->setPlainText(QString::number(score));
+    score_board->setPos(110, 5);
+    score_board->setDefaultTextColor(Qt::yellow);
+    score_board->setFont(*score_font);
+}
+
 void Game::check_status(){
     //setplaintext() is for when you want to update a text
     lives_board->setPlainText(QString::number(ship->get_lives()));
+
+    score_board->setPlainText(QString::number(score));
 }

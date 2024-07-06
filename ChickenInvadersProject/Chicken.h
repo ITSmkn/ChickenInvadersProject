@@ -13,6 +13,8 @@ public:
 
     Chicken(int n1, int n2 , QTimer* t);
 
+    void decrease_FoeLives() override;
+
 public slots:
 //     overriding wiggle for Chicken class ...
     void wiggle() override;
