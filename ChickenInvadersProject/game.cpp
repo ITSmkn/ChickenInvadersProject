@@ -17,6 +17,9 @@ Game::~Game(){
     delete scene;
     delete ship;
     delete ship_time;
+    delete chicken_time;
+    delete lives_board;
+    delete lives_font;
 }
 
 
@@ -43,12 +46,18 @@ void Game::SceneSet(){
     // these timers make their connected functions work every (n) ms ...
     // giving value to them ...
     ship_time->start(45);
-    chicken_time->start(100);
+    chicken_time->start(125);
 
     ship = new SpaceShip(ship_time);
     scene->addItem(ship);
 
+    //setting font
+    lives_font = new QFont("Arial", 25);
+    lives_font->setBold(true);
 
+    //setting boards
+    show_lives();
+    scene->addItem(lives_board);
 
     //cursor tracker was enabled
     setMouseTracking(true);
@@ -162,4 +171,17 @@ void Game::mousePressEvent(QMouseEvent* event){
 
 void Game::mouseMoveEvent(QMouseEvent *event){
     ship->setPos(event->x(), event->y()-35);
+}
+
+void Game::show_lives(){
+    lives_board = new QGraphicsTextItem;
+    lives_board->setPlainText(QString::number(ship->get_lives()));
+    lives_board->setPos(90, 930);
+    lives_board->setDefaultTextColor(Qt::red);
+    lives_board->setFont(*lives_font);
+}
+
+void Game::check_status(){
+    //setplaintext() is for when you want to update a text
+    lives_board->setPlainText(QString::number(ship->get_lives()));
 }

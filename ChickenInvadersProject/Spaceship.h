@@ -23,7 +23,6 @@ public:
     int get_lives();
     void set_lives(int);
     void shoot();
-
 };
 
 #endif // SPACESHIP_H
