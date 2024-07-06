@@ -14,7 +14,7 @@ class SpaceShip :public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 private:
 
-    int lives = 1;
+    int lives = 3;
 
 public:
 

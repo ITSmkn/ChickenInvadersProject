@@ -17,19 +17,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Chicken.cpp \
+    Egg.cpp \
     Enemy.cpp \
+    FallingItems.cpp \
+    Hen.cpp \
+    Meat.cpp \
+    Prize.cpp \
     Rocket.cpp \
     Spaceship.cpp \
     Start_Menu.cpp \
+    SuperHen.cpp \
     game.cpp \
     main.cpp
 
 HEADERS += \
     Chicken.h \
+    Egg.h \
     Enemy.h \
+    FallingItems.h \
+    Hen.h \
+    Meat.h \
+    Prize.h \
     Rocket.h \
     Spaceship.h \
     Start_Menu.h \
+    SuperHen.h \
     game.h
 
 FORMS +=

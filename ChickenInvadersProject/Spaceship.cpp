@@ -33,12 +33,11 @@ void SpaceShip::shoot(){
         return;
     }
     // creating Rocket ...
-
+    if(game->time_count >= 3){// after two seconds you from pushing start button , you can shoot
     rocket = new Rocket(time);
     rocket->setPos(x()+50,y()-110);
-
     scene()->addItem(rocket);
-
+    }
     // to check if it has hit enemies ...
 
 }

@@ -1,12 +1,24 @@
 #include "Enemy.h"
+#include "game.h"
+
+extern Game* game;
 
 
-Enemy::Enemy(int n1, int n2 , QTimer* t):x(n1),y(n2),time(t) {
+Enemy::Enemy(int x, int y , int r,QTimer* t):X(x),Y(y),rows(r),time(t){
 
     temp = 0;
+    setPos(x,y);
+    connect(time,SIGNAL(timeout()),this,SLOT(MoveDown()));
 };
 
 
 int Enemy::get_FoeLives(){
     return FoeLives;
+}
+
+
+void Enemy::MoveDown(){
+    if(y() < game->get_Height()*2/3 - (rows+1)*120){
+    setPos(X , y() + 20);
+    }
 }

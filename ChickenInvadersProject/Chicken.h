@@ -11,7 +11,7 @@ class Chicken : public Enemy{
     Q_OBJECT
 public:
 
-    Chicken(int n1, int n2 , QTimer* t);
+    Chicken(int n1, int n2 , int r,QTimer* t);
 
     void decrease_FoeLives() override;
 

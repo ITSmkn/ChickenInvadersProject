@@ -4,13 +4,11 @@
 extern Game* game;
 
 
-Chicken::Chicken(int X, int Y , QTimer* t) : Enemy(X, Y, t){
+Chicken::Chicken(int X, int Y , int r,QTimer* t) : Enemy(X, Y, r ,t){
 
     // setting lives for chicken ...
     FoeLives = 1;
-
     setPixmap(QPixmap(":/images/src/images/chicken1.png"));
-    setPos(X, Y);
     connect(time,SIGNAL(timeout()),this,SLOT(wiggle()));
 }
 

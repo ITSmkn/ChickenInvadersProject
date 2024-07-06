@@ -12,7 +12,10 @@ Game::Game(int width , int height):Width(width),Height(height),score(0){
     isLost = false;
 
  SceneSet();
- set_gameTime(); //the begining of time counter ...
+
+ game_time = new QTimer;   //the begining of time counter ...
+ connect(game_time,SIGNAL(timeout()),this,SLOT(time_counter()));
+ game_time->start(1000);
 
 }
 
@@ -86,64 +89,64 @@ void Game::SceneSet(){
 
 
 
-    auto chicken1 = new Chicken(620, 100, chicken_time);
+    auto chicken1 = new Chicken(620, -360, 3,chicken_time);
     scene->addItem(chicken1);
 
-    auto chicken2 = new Chicken(760, 100, chicken_time);
+    auto chicken2 = new Chicken(760, -360, 3,chicken_time);
     scene->addItem(chicken2);
 
-    auto chicken3 = new Chicken(900, 100, chicken_time);
+    auto chicken3 = new Chicken(900, -360, 3,chicken_time);
     scene->addItem(chicken3);
 
-    auto chicken4 = new Chicken(1040, 100, chicken_time);
+    auto chicken4 = new Chicken(1040, -360, 3,chicken_time);
     scene->addItem(chicken4);
 
-    auto chicken5 = new Chicken(1180, 100, chicken_time);
+    auto chicken5 = new Chicken(1180, -360, 3,chicken_time);
     scene->addItem(chicken5);
 
-    auto chicken6 = new Chicken(620, 220, chicken_time);
+    auto chicken6 = new Chicken(620, -240, 2,chicken_time);
     scene->addItem(chicken6);
 
-    auto chicken7 = new Chicken(760, 220, chicken_time);
+    auto chicken7 = new Chicken(760, -240, 2,chicken_time);
     scene->addItem(chicken7);
 
-    auto chicken8 = new Chicken(900, 220, chicken_time);
+    auto chicken8 = new Chicken(900, -240, 2,chicken_time);
     scene->addItem(chicken8);
 
-    auto chicken9 = new Chicken(1040, 220, chicken_time);
+    auto chicken9 = new Chicken(1040, -240, 2,chicken_time);
     scene->addItem(chicken9);
 
-    auto chicken10 = new Chicken(1180, 220, chicken_time);
+    auto chicken10 = new Chicken(1180, -240, 2,chicken_time);
     scene->addItem(chicken10);
 
-    auto chicken11 = new Chicken(620, 340, chicken_time);
+    auto chicken11 = new Chicken(620, -120, 1,chicken_time);
     scene->addItem(chicken11);
 
-    auto chicken12 = new Chicken(760, 340, chicken_time);
+    auto chicken12 = new Chicken(760, -120, 1,chicken_time);
     scene->addItem(chicken12);
 
-    auto chicken13 = new Chicken(900, 340, chicken_time);
+    auto chicken13 = new Chicken(900, -120, 1,chicken_time);
     scene->addItem(chicken13);
 
-    auto chicken14 = new Chicken(1040, 340, chicken_time);
+    auto chicken14 = new Chicken(1040, -120, 1,chicken_time);
     scene->addItem(chicken14);
 
-    auto chicken15 = new Chicken(1180, 340, chicken_time);
+    auto chicken15 = new Chicken(1180, -120, 1,chicken_time);
     scene->addItem(chicken15);
 
-    auto chicken16 = new Chicken(620, 460, chicken_time);
+    auto chicken16 = new Chicken(620, 0, 0,chicken_time);
     scene->addItem(chicken16);
 
-    auto chicken17 = new Chicken(760, 460, chicken_time);
+    auto chicken17 = new Chicken(760, 0, 0,chicken_time);
     scene->addItem(chicken17);
 
-    auto chicken18 = new Chicken(900, 460, chicken_time);
+    auto chicken18 = new Chicken(900, 0, 0,chicken_time);
     scene->addItem(chicken18);
 
-    auto chicken19 = new Chicken(1040, 460, chicken_time);
+    auto chicken19 = new Chicken(1040, 0, 0,chicken_time);
     scene->addItem(chicken19);
 
-    auto chicken20 = new Chicken(1180, 460, chicken_time);
+    auto chicken20 = new Chicken(1180, 0, 0,chicken_time);
     scene->addItem(chicken20);
 
 
@@ -201,13 +204,6 @@ void Game::set_score(int s){
 //other methods
 
 
-void Game::set_gameTime(){
-
-    game_time = new QTimer;
-    connect(game_time,SIGNAL(timeout()),this,SLOT(time_counter()));
-    game_time->start(1000);
-
-}
 
 void Game::time_counter(){
 

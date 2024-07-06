@@ -1,8 +1,14 @@
 release/Chicken.o
+release/Egg.o
 release/Enemy.o
+release/FallingItems.o
+release/Hen.o
+release/Meat.o
+release/Prize.o
 release/Rocket.o
 release/Spaceship.o
 release/Start_Menu.o
+release/SuperHen.o
 release/game.o
 release/main.o
 release/qrc_Src.o

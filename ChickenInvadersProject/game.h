@@ -33,7 +33,6 @@ public slots:
     void time_counter();
 
 public:
-    // two important variable ...
 
     int time_count;   // to count time...
     int collide_time; // saving time_count whenever spaceship collide...
@@ -87,9 +86,6 @@ public:
 
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();
-
-     //to set timer for game class
-     void set_gameTime();
 
      //to handle losing
      void lose();
