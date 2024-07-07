@@ -36,9 +36,12 @@ public slots:
 
 public:
 
+    int enemy_number;
+
     int time_count;   // to count time...
     int collide_time; // saving time_count whenever spaceship collide...
     int lose_time;
+    int levelUp_time;
 
     bool isCrashed ;  // for demonstrating spaceship condition(whether it has collided or ..)...
     bool isLost ;
@@ -52,7 +55,9 @@ public:
      QGraphicsTextItem *lives_board;
      QFont *lives_font;
      QGraphicsTextItem *score_board;
-     QFont *score_font;
+     QFont *score_font;     
+     QGraphicsTextItem *levelUp_board;
+     QFont *levelUp_font;
      QPushButton* pause;
 
      // Functions...
@@ -86,11 +91,15 @@ public:
 
      void show_LoseBoard();
 
+     void show_levelUpBoard();
+
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();
 
      //to handle losing
      void lose();
+
+     void addEnemy();
 
 
 };

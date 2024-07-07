@@ -26,6 +26,12 @@ void Rocket::move(){
             //deleting the rocket while it hits an enemy
             delete this;
 
+            //decreasing the number of enemies...
+            game->enemy_number -= 1;
+            if(game->enemy_number == 0){
+               game->levelUp_time = game->time_count;
+            }
+
             //updating the score
             int z = game->get_score();
             game->set_score(z + 5);
@@ -47,6 +53,12 @@ void Rocket::move(){
                 //updating the score
                 int z = game->get_score();
                 game->set_score(z + 10);
+
+                //decreasing the number of enemies...
+                game->enemy_number -= 1;
+                if(game->enemy_number == 0){
+                   game->levelUp_time = game->time_count;
+                }
             }
             temp->decrease_FoeLives();
         }
@@ -63,6 +75,12 @@ void Rocket::move(){
                 //updating the score
                 int z = game->get_score();
                 game->set_score(z + 20);
+
+                //decreasing the number of enemies...
+                game->enemy_number -= 1;
+                if(game->enemy_number == 0){
+                   game->levelUp_time = game->time_count;
+                }
             }
             temp->decrease_FoeLives();
         }

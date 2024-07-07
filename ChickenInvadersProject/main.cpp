@@ -15,5 +15,6 @@ int main(int argc, char *argv[])
     auto st = new Start_menu();
     st->show();
 
+
     return a.exec();
 }

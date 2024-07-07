@@ -33,7 +33,7 @@ void SpaceShip::shoot(){
         return;
     }
     // creating Rocket ...
-    if(game->time_count >= 3){// after two seconds you from pushing start button , you can shoot
+    if(game->time_count >= 3){// after seconds you from pushing start button , you can shoot
     rocket = new Rocket(time);
     rocket->setPos(x()+50,y()-110);
     scene()->addItem(rocket);
@@ -52,6 +52,13 @@ void SpaceShip::detect_collide(){
         if(typeid(*collided[i]) == typeid(Chicken) || typeid (*collided[i]) == typeid (Hen) || typeid (*collided[i]) == typeid (SuperHen)){
             // deleting colliding enemy...
             delete collided[i];
+
+            //decreasing the number of enemies...
+            game->enemy_number -= 1;
+            if(game->enemy_number == 0){           // for showing levelUp_board
+                 game->levelUp_time = game->time_count;
+            }
+
             // decreasing spaceship lives ...
             --lives;
             // we collided ...

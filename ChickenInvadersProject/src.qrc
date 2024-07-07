@@ -17,5 +17,7 @@
         <file>src/images/SuperChicken1.png</file>
         <file>src/images/SuperChicken2.png</file>
         <file>src/images/lose.png</file>
+        <file>src/images/score.png</file>
+        <file>src/images/win.png</file>
     </qresource>
 </RCC>

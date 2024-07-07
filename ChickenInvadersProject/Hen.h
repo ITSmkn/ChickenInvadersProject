@@ -16,7 +16,7 @@ public:
     void decrease_FoeLives() override;
 
 public slots:
-    //overriding wiggle for chicken class
+    //overriding wiggle for hen class
     void wiggle() override;
 };
 

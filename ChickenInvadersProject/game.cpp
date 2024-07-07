@@ -8,6 +8,9 @@
 extern Game *game;
 
 Game::Game(int width , int height):Width(width),Height(height),score(0){
+
+    level = 1;
+    time_count = 0;
     isCrashed = false;
     isLost = false;
 
@@ -30,6 +33,8 @@ Game::~Game(){
     delete score_board;
     delete score_font;
     delete game_time;
+    delete levelUp_board;
+    delete levelUp_font;
 
 }
 
@@ -44,15 +49,18 @@ void Game::SceneSet(){
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //fullscreen...
     setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
-    //setting background to the main game screen
-    setBackgroundBrush(QPixmap(":/images/src/images/Level1Bg.png"));
 
+    //setting background to the main game screen according to the level ...
+    if(level < 3){
+    setBackgroundBrush(QPixmap(":/images/src/images/Level1Bg.png"));
+    }
+    else{
+    setBackgroundBrush(QPixmap(":/images/src/images/Level2Bg.png"));
+    }
 
     //removing the cursor
     QCursor csr(Qt::BlankCursor);
     setCursor(csr);
-
-
 
     ship_time = new QTimer;
     chicken_time = new QTimer;
@@ -68,13 +76,17 @@ void Game::SceneSet(){
 
     scene->addItem(ship);
 
-
+    addEnemy();
     //setting font
     lives_font = new QFont("Arial", 25);
     lives_font->setBold(true);
 
     score_font = new QFont("Arial", 30);
     score_font->setBold(true);
+
+    levelUp_font = new QFont("Arial", 40);
+    levelUp_font->setBold(true);
+    levelUp_font->setItalic(true);
 
     //setting boards
     show_lives();
@@ -86,69 +98,6 @@ void Game::SceneSet(){
     //cursor tracker was enabled
     setMouseTracking(true);
     setFocus();
-
-
-    auto hen1 = new Hen(620, -360, 3, chicken_time);
-    scene->addItem(hen1);
-
-    auto hen2 = new Hen(760, -360, 3, chicken_time);
-    scene->addItem(hen2);
-
-    auto hen3 = new Hen(900, -360, 3, chicken_time);
-    scene->addItem(hen3);
-
-    auto hen4 = new Hen(1040, -360, 3, chicken_time);
-    scene->addItem(hen4);
-
-    auto hen5 = new Hen(1180, -360, 3, chicken_time);
-    scene->addItem(hen5);
-
-    auto superhen1 = new SuperHen(620, -240, 2, chicken_time);
-    scene->addItem(superhen1);
-
-    auto superhen2 = new SuperHen(760, -240, 2, chicken_time);
-    scene->addItem(superhen2);
-
-    auto superhen3 = new SuperHen(900, -240, 2, chicken_time);
-    scene->addItem(superhen3);
-
-    auto superhen4 = new SuperHen(1040, -240, 2, chicken_time);
-    scene->addItem(superhen4);
-
-    auto superhen5 = new SuperHen(1180, -240, 2, chicken_time);
-    scene->addItem(superhen5);
-
-    auto chicken1 = new Chicken(620, -120, 1, chicken_time);
-    scene->addItem(chicken1);
-
-    auto chicken2 = new Chicken(760, -120, 1, chicken_time);
-    scene->addItem(chicken2);
-
-    auto chicken3 = new Chicken(900, -120, 1, chicken_time);
-    scene->addItem(chicken3);
-
-    auto chicken4 = new Chicken(1040, -120, 1, chicken_time);
-    scene->addItem(chicken4);
-
-    auto chicken5 = new Chicken(1180, -120, 1, chicken_time);
-    scene->addItem(chicken5);
-
-    auto chicken16 = new Chicken(620, 0, 0,chicken_time);
-    scene->addItem(chicken16);
-
-    auto chicken17 = new Chicken(760, 0, 0,chicken_time);
-    scene->addItem(chicken17);
-
-    auto chicken18 = new Chicken(900, 0, 0,chicken_time);
-    scene->addItem(chicken18);
-
-    auto chicken19 = new Chicken(1040, 0, 0,chicken_time);
-    scene->addItem(chicken19);
-
-    auto chicken20 = new Chicken(1180, 0, 0,chicken_time);
-    scene->addItem(chicken20);
-
-
 
     //make pause button
     pause = new QPushButton( "| |" , this);
@@ -224,6 +173,35 @@ void Game::time_counter(){
        isCrashed = false;
     }
 
+    // level up ...
+    if(enemy_number == 0){
+    ship->setPos(880,800);
+    show_levelUpBoard();
+    scene->addItem(levelUp_board);
+    if((time_count - 4) == levelUp_time){
+
+    if(level == 6){                      // to check victory
+        Start_menu *sm = new Start_menu();
+        sm->show();
+        game->close();
+    }
+    else{
+    time_count= 0;
+    ++level;
+    int n = ship->get_lives(); // keep the lives for the remaining levels
+    SceneSet();                // lives = 3
+    ship->set_lives(n);        // but the former lives will be set on it
+
+    // if lives = 1 and you collide the last enemy in a particular level
+    if(ship->get_lives() == 0){
+        Start_menu *sm = new Start_menu();
+        sm->show();
+        game->close();
+    }
+    }
+    }
+    }
+
 }
 
 
@@ -256,6 +234,34 @@ void Game::show_LoseBoard(){
     }
 }
 
+void Game::show_levelUpBoard(){
+    levelUp_board = new QGraphicsTextItem;
+    levelUp_board->setPos(100,500);
+    levelUp_board->setFont(*levelUp_font);
+    levelUp_board->setDefaultTextColor(Qt::white);
+    if(level == 1){
+        levelUp_board->setPlainText(QString("Congrats ! you just passed level 1 of season 1"));
+    }
+    if(level == 2){
+        levelUp_board->setPlainText(QString("Congrats ! you just passed level 2 of season 1"));
+    }
+    if(level == 3){
+        levelUp_board->setPlainText(QString("Congrats ! you just passed level 1 of season 2"));
+    }
+    if(level == 4){
+        levelUp_board->setPlainText(QString("Congrats ! you just passed level 2 of season 2"));
+    }
+    if(level == 5){
+        levelUp_board->setPlainText(QString("Congrats ! you just passed level 1 of season 3"));
+    }
+    if(level == 6){
+        QPixmap image(":/images/src/images/win.png");
+        QGraphicsPixmapItem* win_pic = new QGraphicsPixmapItem(image);
+        win_pic->setPos(560,100);
+        scene->addItem(win_pic);
+    }
+}
+
 void Game::show_lives(){
     lives_board = new QGraphicsTextItem;
     lives_board->setPlainText(QString::number(ship->get_lives()));
@@ -277,4 +283,88 @@ void Game::check_status(){
     lives_board->setPlainText(QString::number(ship->get_lives()));
 
     score_board->setPlainText(QString::number(score));
+}
+
+
+
+void Game::addEnemy(){
+
+    if(level == 1){
+        enemy_number = 20;
+        for(int i = 0 ; i <= 3 ; i++){ // rows
+            for(int j = 0 ; j <= 4 ; j++){
+                auto chicken = new Chicken(550 + j*170 , -i*120 , i , chicken_time);
+                scene->addItem(chicken);
+            }
+        }
+    }
+
+    if(level == 2){
+        enemy_number = 36;
+        for(int i = 0 ; i <= 3 ; i++){ // rows
+            for(int j = 0 ; j <= 8 ; j++){
+                auto chicken = new Chicken(275 + j*170 , -i*120 , i , chicken_time);
+                scene->addItem(chicken);
+            }
+        }
+    }
+
+    if(level == 3){
+        enemy_number = 24;
+        for(int i = 0 ; i <= 2 ; i++){ // rows
+            for(int j = 0 ; j <= 7 ; j++){
+                if(j%2 == 0){
+                auto chicken = new Chicken(300 + j*170 , -i*120 , i , chicken_time);
+                scene->addItem(chicken);
+                }
+                else{
+                    auto chicken = new Hen(300 + j*170 , -i*120 , i , chicken_time);
+                    scene->addItem(chicken);
+                }
+            }
+        }
+    }
+
+    if(level == 4){
+        enemy_number = 30;
+        for(int i = 0 ; i <= 2 ; i++){ // rows
+            for(int j = 0 ; j <= 9 ; j++){
+                if(j%3 == 0){
+                auto chicken = new Chicken(180 + j*170 , -i*120 , i , chicken_time);
+                scene->addItem(chicken);
+                }
+                else{
+                    auto chicken = new Hen(180 + j*170 , -i*120 , i , chicken_time);
+                    scene->addItem(chicken);
+                }
+            }
+        }
+    }
+
+    if(level == 5){
+        enemy_number = 18;
+        for(int i = 0 ; i <= 2 ; i++){ // rows
+            for(int j = 0 ; j <= 5 ; j++){
+                if(j%2 == 0){
+                auto chicken = new Hen(500 + j*170 , -i*120 , i , chicken_time);
+                scene->addItem(chicken);
+                }
+                else{
+                    auto chicken = new SuperHen(500 + j*170 , -i*120 , i , chicken_time);
+                    scene->addItem(chicken);
+                }
+            }
+        }
+    }
+
+    if(level == 6){
+        enemy_number = 27;
+        for(int i = 0 ; i <= 2 ; i++){ // rows
+            for(int j = 0 ; j <= 8 ; j++){
+                auto chicken = new SuperHen(275 + j*170 , -i*130 , i , chicken_time);
+                scene->addItem(chicken);
+            }
+        }
+    }
+
 }
