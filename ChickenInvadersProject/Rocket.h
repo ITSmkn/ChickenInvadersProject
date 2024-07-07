@@ -7,6 +7,8 @@
 #include <QList>
 
 #include "Chicken.h"
+#include "Hen.h"
+#include "SuperHen.h"
 
 
 class Rocket :public QObject ,public QGraphicsPixmapItem{

@@ -48,7 +48,8 @@ void SpaceShip::detect_collide(){
     QList<QGraphicsItem *> collided = collidingItems();
 
     for(int i = 0 ; i < collided.size() ; i++){
-        if(typeid(*collided[i]) == typeid(Chicken)){
+        //checking the type
+        if(typeid(*collided[i]) == typeid(Chicken) || typeid (*collided[i]) == typeid (Hen) || typeid (*collided[i]) == typeid (SuperHen)){
             // deleting colliding enemy...
             delete collided[i];
             // decreasing spaceship lives ...

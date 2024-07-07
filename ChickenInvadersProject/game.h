@@ -13,6 +13,8 @@
 #include "Enemy.h"
 #include "Chicken.h"
 #include "Rocket.h"
+#include "Hen.h"
+#include "SuperHen.h"
 
 // this class is actually related to the main game screen
 

@@ -21,6 +21,7 @@ void Rocket::move(){
 
     for(int i = 0; i < collided.size(); i++){
         //checking the type
+        //for chicken
         if(typeid (Chicken) == typeid (*collided[i])){
             //deleting the rocket while it hits an enemy
             delete this;
@@ -33,6 +34,39 @@ void Rocket::move(){
             Chicken *temp = dynamic_cast<Chicken*>(collided[i]);
             temp->decrease_FoeLives();
         }
+
+        //for hen
+        if(typeid (Hen) == typeid (*collided[i])){
+            //deleting the rocket while it hits an enemy
+            delete this;
+
+            // casting QGraphicsItem to Chicken to use class's function
+            Hen *temp = dynamic_cast<Hen*>(collided[i]);
+
+            if(temp->get_FoeLives() == 1){
+                //updating the score
+                int z = game->get_score();
+                game->set_score(z + 10);
+            }
+            temp->decrease_FoeLives();
+        }
+
+        //for superhen
+        if(typeid (SuperHen) == typeid (*collided[i])){
+            //deleting the rocket while it hits an enemy
+            delete this;
+
+            // casting QGraphicsItem to Chicken to use class's function
+            SuperHen *temp = dynamic_cast<SuperHen*>(collided[i]);
+
+            if(temp->get_FoeLives() == 1){
+                //updating the score
+                int z = game->get_score();
+                game->set_score(z + 20);
+            }
+            temp->decrease_FoeLives();
+        }
+
     }
 
 

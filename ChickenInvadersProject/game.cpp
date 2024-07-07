@@ -88,51 +88,50 @@ void Game::SceneSet(){
     setFocus();
 
 
+    auto hen1 = new Hen(620, -360, 3, chicken_time);
+    scene->addItem(hen1);
 
-    auto chicken1 = new Chicken(620, -360, 3,chicken_time);
+    auto hen2 = new Hen(760, -360, 3, chicken_time);
+    scene->addItem(hen2);
+
+    auto hen3 = new Hen(900, -360, 3, chicken_time);
+    scene->addItem(hen3);
+
+    auto hen4 = new Hen(1040, -360, 3, chicken_time);
+    scene->addItem(hen4);
+
+    auto hen5 = new Hen(1180, -360, 3, chicken_time);
+    scene->addItem(hen5);
+
+    auto superhen1 = new SuperHen(620, -240, 2, chicken_time);
+    scene->addItem(superhen1);
+
+    auto superhen2 = new SuperHen(760, -240, 2, chicken_time);
+    scene->addItem(superhen2);
+
+    auto superhen3 = new SuperHen(900, -240, 2, chicken_time);
+    scene->addItem(superhen3);
+
+    auto superhen4 = new SuperHen(1040, -240, 2, chicken_time);
+    scene->addItem(superhen4);
+
+    auto superhen5 = new SuperHen(1180, -240, 2, chicken_time);
+    scene->addItem(superhen5);
+
+    auto chicken1 = new Chicken(620, -120, 1, chicken_time);
     scene->addItem(chicken1);
 
-    auto chicken2 = new Chicken(760, -360, 3,chicken_time);
+    auto chicken2 = new Chicken(760, -120, 1, chicken_time);
     scene->addItem(chicken2);
 
-    auto chicken3 = new Chicken(900, -360, 3,chicken_time);
+    auto chicken3 = new Chicken(900, -120, 1, chicken_time);
     scene->addItem(chicken3);
 
-    auto chicken4 = new Chicken(1040, -360, 3,chicken_time);
+    auto chicken4 = new Chicken(1040, -120, 1, chicken_time);
     scene->addItem(chicken4);
 
-    auto chicken5 = new Chicken(1180, -360, 3,chicken_time);
+    auto chicken5 = new Chicken(1180, -120, 1, chicken_time);
     scene->addItem(chicken5);
-
-    auto chicken6 = new Chicken(620, -240, 2,chicken_time);
-    scene->addItem(chicken6);
-
-    auto chicken7 = new Chicken(760, -240, 2,chicken_time);
-    scene->addItem(chicken7);
-
-    auto chicken8 = new Chicken(900, -240, 2,chicken_time);
-    scene->addItem(chicken8);
-
-    auto chicken9 = new Chicken(1040, -240, 2,chicken_time);
-    scene->addItem(chicken9);
-
-    auto chicken10 = new Chicken(1180, -240, 2,chicken_time);
-    scene->addItem(chicken10);
-
-    auto chicken11 = new Chicken(620, -120, 1,chicken_time);
-    scene->addItem(chicken11);
-
-    auto chicken12 = new Chicken(760, -120, 1,chicken_time);
-    scene->addItem(chicken12);
-
-    auto chicken13 = new Chicken(900, -120, 1,chicken_time);
-    scene->addItem(chicken13);
-
-    auto chicken14 = new Chicken(1040, -120, 1,chicken_time);
-    scene->addItem(chicken14);
-
-    auto chicken15 = new Chicken(1180, -120, 1,chicken_time);
-    scene->addItem(chicken15);
 
     auto chicken16 = new Chicken(620, 0, 0,chicken_time);
     scene->addItem(chicken16);
