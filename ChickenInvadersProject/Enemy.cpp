@@ -22,7 +22,7 @@ int Enemy::get_FoeLives(){
 
 
 void Enemy::MoveDown(){
-    if(y() < game->get_Height()*2/3 - (rows+1)*120){
-    setPos(X , y() + 20);
+    if(y() < game->get_Height()*2/3 - (rows+1)*120 - 35){
+    setPos(X , y() + 25);
     }
 }

@@ -77,6 +77,10 @@ public:
      Game(int width , int height);
     ~Game();
 
+     void resume_game();
+
+     void keyPressEvent(QKeyEvent *event);
+
      void SceneSet();
 
      // other functions ...

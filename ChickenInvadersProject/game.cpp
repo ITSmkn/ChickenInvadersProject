@@ -71,6 +71,8 @@ Game::~Game(){
 }
 
 
+
+
 void Game::SceneSet(){
     if(isLost == false){
     scene = new QGraphicsScene();
@@ -125,22 +127,7 @@ void Game::SceneSet(){
     setMouseTracking(true);
     setFocus();
 
-    //make pause button
-    pause = new QPushButton( "| |" , this);
-    pause->setGeometry(x() + 1830, y()*2 + 10 , 80 , 80);
-    scene->addWidget(pause);
-    pause->setFocusPolicy(Qt::FocusPolicy::NoFocus);
 
-
-    //connect(pause , &QPushButton::clicked , this , &SceneSet::pause_game);
-
-    setStyleSheet("QPushButton{background-color: rgba(244, 40, 11, 180);"
-                  "color:rgb(255, 255, 255);"
-                  "border-bottom-left-radius:35;"
-                  "font: 63 28pt \"Bw Stretch Medium\";"
-                  "border:0.5px solid rgb(255, 255, 255);}"
-                  "QPushButton:hover{background-color: rgba(29, 61, 239, 220);}"
-                  "QPushButton:pressed{background-color: rgba(0, 0, 64, 200);}");
 }
     else{
     // handle losing ...
@@ -174,6 +161,36 @@ void Game::set_score(int s){
     score = s;
 }
 
+// for pause menu ...
+
+// for resuming the game ...
+void Game::resume_game(){
+
+    ship_time->start(45);
+    chicken_time->start(125);
+    EnemyDrop_time->start(45);
+    prize_time->start(45);
+
+    game_time->start(1000);
+}
+
+// escape button for pausing the game ...
+
+void Game::keyPressEvent(QKeyEvent *event){
+    if (event->key() == Qt::Key_Escape) {
+        // freezing all of the timer ...
+        ship_time->stop();
+        chicken_time->stop();
+        EnemyDrop_time->stop();
+        prize_time->stop();
+
+        game_time->stop();
+        Start_menu *st = new Start_menu(2);
+        st->show();
+    }
+}
+
+
 //other methods
 
 void Game::time_counter(){
@@ -183,7 +200,7 @@ void Game::time_counter(){
 
     // returning to main menu due to losing ...
     if(lose_time + 4 == time_count && isLost){
-        Start_menu *sm = new Start_menu();
+        Start_menu *sm = new Start_menu(1);
         sm->show();
         game->close();
     }
@@ -324,7 +341,7 @@ void Game::time_counter(){
     if((time_count - 4) == levelUp_time){
 
     if(level == 6){                      // to check victory
-        Start_menu *sm = new Start_menu();
+        Start_menu *sm = new Start_menu(1);
         sm->show();
         game->close();
     }
@@ -456,7 +473,7 @@ void Game::addEnemy(){
         enemy_number = 36;
         for(int i = 0 ; i <= 3 ; i++){ // rows
             for(int j = 0 ; j <= 8 ; j++){
-                auto chicken = new Chicken(275 + j*170 , -i*120 , i , chicken_time);
+                auto chicken = new Chicken(240 + j*170 , -i*120 , i , chicken_time);
                 scene->addItem(chicken);
             }
         }

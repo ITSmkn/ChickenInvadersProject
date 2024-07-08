@@ -13,7 +13,7 @@ Egg::Egg(QTimer* t) : FallingItems(t){
 
 void Egg::MoveDown(){
     if(y() < game->get_Height() - 46){
-        setPos(x(), y() + 22);
+        setPos(x(), y() + 15);
     }
     else{
         //changing the picture when it reaches the bottom

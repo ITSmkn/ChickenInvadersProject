@@ -15,9 +15,7 @@ SpaceShip::SpaceShip(QTimer* t):time(t){
 
 }
 
-SpaceShip::~SpaceShip(){
-
-}
+SpaceShip::~SpaceShip(){}
 
 int SpaceShip::get_lives(){
     return lives;
