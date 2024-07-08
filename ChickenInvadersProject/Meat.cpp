@@ -11,7 +11,7 @@ Meat::Meat(QTimer* t) : FallingItems(t){
 void Meat::MoveDown(){
 
     if(y() < game->get_Height()-20)
-        setPos(x(),y() + 35);
+        setPos(x(),y() + 28);
 
     else {
         scene()->removeItem(this);

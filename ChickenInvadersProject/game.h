@@ -70,8 +70,6 @@ public:
      QGraphicsTextItem *meat_board;
      QFont *meat_font;
 
-     QPushButton* pause;
-
      // Functions...
 
      Game(int width , int height);

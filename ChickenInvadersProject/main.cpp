@@ -8,8 +8,8 @@
 
 Game *game;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
+
     QApplication a(argc, argv);
 
     auto st = new Start_menu(1);

@@ -172,6 +172,8 @@ void Game::resume_game(){
     prize_time->start(45);
 
     game_time->start(1000);
+    // setting cursor on spaceship ...
+    QCursor::setPos((ship->x()),(ship->y()));
 }
 
 // escape button for pausing the game ...
@@ -218,6 +220,8 @@ void Game::time_counter(){
        ship->setPixmap(QPixmap(":/images/src/images/SpaceShip.png"));
        ship->setPos(880,800);
        setMouseTracking(true);
+       // set the cursor on spaceship
+       QCursor::setPos(880,800);
        isCrashed = false;
     }
 
@@ -336,6 +340,7 @@ void Game::time_counter(){
     // level up ...
     if(enemy_number == 0 && ship->get_lives() > 0){
     ship->setPos(880,800);
+    QCursor::setPos(880,800);
     show_levelUpBoard();
     scene->addItem(levelUp_board);
     if((time_count - 4) == levelUp_time){
