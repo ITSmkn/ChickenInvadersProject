@@ -1,8 +1,6 @@
 #include "Rocket.h"
 #include "game.h"
 
-
-
 extern Game* game; // it should be here because the move function that we defined ...
 
 Rocket::Rocket(QTimer* t):time(t){
@@ -59,6 +57,7 @@ void Rocket::move(){
                 if(game->enemy_number == 0){
                    game->levelUp_time = game->time_count;
                 }
+                Hen::hens.remove(Hen::hens.indexOf(static_cast<Hen*>(collided[i])));
             }
             temp->decrease_FoeLives();
         }
@@ -81,6 +80,7 @@ void Rocket::move(){
                 if(game->enemy_number == 0){
                    game->levelUp_time = game->time_count;
                 }
+                Hen::hens.remove(Hen::hens.indexOf(static_cast<Hen *>(collided[i])));
             }
             temp->decrease_FoeLives();
         }

@@ -64,11 +64,13 @@ void Game::SceneSet(){
 
     ship_time = new QTimer;
     chicken_time = new QTimer;
+    EnemyDrop_time = new QTimer;
 
     // these timers make their connected functions work every (n) ms ...
     // giving value to them ...
     ship_time->start(45);
     chicken_time->start(125);
+    EnemyDrop_time->start(45);
 
     ship = new SpaceShip(ship_time);
     ship->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -165,12 +167,125 @@ void Game::time_counter(){
         game->close();
     }
 
+    //deleting egg 1 second after reaching the bottom
+    for(int i = 0; i < Egg::eggs.size(); i++){
+        if(Egg::eggs[i]->reached && game->egg_time + 1 == time_count){
+            delete Egg::eggs[i];
+            Egg::eggs.removeAt(i);
+        }
+    }
+
     // setting spaceship's condition to default (after crashing) ...
     if(collide_time == (time_count -2) && isCrashed == true){
        ship->setPixmap(QPixmap(":/images/src/images/SpaceShip.png"));
        ship->setPos(880,800);
        setMouseTracking(true);
        isCrashed = false;
+    }
+
+    //choosing 3 different numbers (3/12 = 1/4)
+    if(time_count % 5 == 0 && level == 3 && Hen::hens.size() >= 3){
+        QVector<int> vec;
+        bool b = false;
+        while (!b){
+            int r1 = rand() % Hen::hens.size();
+            int r2 = rand() % Hen::hens.size();
+            int r3 = rand() % Hen::hens.size();
+
+            if(r1 != r2 && r1 != r3 && r2 != r3){
+                vec.append(r1);
+                vec.append(r2);
+                vec.append(r3);
+                b = true;
+            }
+        }
+        //droping
+        for (int i = 0; i <= 2; i++) {
+            Hen::hens[vec[i]]->drop_Egg();
+        }
+    }
+
+    if(time_count % 5 == 0 && (level == 4 || level == 5) && Hen::hens.size() >= 6){
+        QVector<int> vec;
+        bool b = false;
+        while (!b){
+            int r1 = rand() % Hen::hens.size();
+            int r2 = rand() % Hen::hens.size();
+            int r3 = rand() % Hen::hens.size();
+            int r4 = rand() % Hen::hens.size();
+            int r5 = rand() % Hen::hens.size();
+            int r6 = rand() % Hen::hens.size();
+
+            if(r1 != r2 && r1 != r3 && r1 != r4 && r1 != r5 && r1 != r6 && r2 != r3 && r2 != r4 && r2 != r5 && r2 != r6 && r3 != r4 && r3 != r5 && r3 != r6 && r4 != r5 && r4 != r6 && r5 != r6){
+                vec.append(r1);
+                vec.append(r2);
+                vec.append(r3);
+                vec.append(r4);
+                vec.append(r5);
+                vec.append(r6);
+                b = true;
+            }
+        }
+        //droping
+        for(int i = 0; i <= 5; i++){
+            Hen::hens[vec[i]]->drop_Egg();
+        }
+    }
+
+    if(time_count % 7 == 0 && level == 6 && Hen::hens.size() >= 13){
+        QVector<int> vec;
+        bool b = false;
+        while(!b){
+            int r1 = rand() % Hen::hens.size();
+            int r2 = rand() % Hen::hens.size();
+            int r3 = rand() % Hen::hens.size();
+            int r4 = rand() % Hen::hens.size();
+            int r5 = rand() % Hen::hens.size();
+            int r6 = rand() % Hen::hens.size();
+            int r7 = rand() % Hen::hens.size();
+            int r8 = rand() % Hen::hens.size();
+            int r9 = rand() % Hen::hens.size();
+            int r10 = rand() % Hen::hens.size();
+            int r11 = rand() % Hen::hens.size();
+            int r12 = rand() % Hen::hens.size();
+            int r13 = rand() % Hen::hens.size();
+
+            // random numbers should not be the same
+            if(r1 != r2 && r1 != r3 && r1 != r4 && r1 != r5 && r1 != r6 && r1 != r7
+                    && r1 != r8 && r1 != r9 && r1 != r10 && r1 != r11 && r1 != r12 && r1 != r13
+                    && r2 != r3 && r2 != r4 && r2 != r5 && r2 != r6
+                    && r2 != r7 && r2 != r8 && r2 != r9 && r2 != r10 && r2 != r11
+                    && r2 != r12 && r2 != r13 && r3 != r4 && r3 != r5 && r3 != r6 && r3 != r7
+                    && r3 != r8 && r3 != r9 && r3 != r10 && r3 != r11 && r3 != r12 && r3 != r13
+                    && r4 != r5 && r4 != r6 && r4 != r7 && r4 != r8 && r4 != r9 && r4 != r10
+                    && r4 != r11 && r4 != r12 && r4 != r13 && r5 != r6 && r5 != r7
+                    && r5 != r8 && r5 != r9 && r5 != r10 && r5 != r11 && r5 != r12 && r5 != r13
+                    && r6 != r7 && r6 != r8 && r6 != r9 && r6 != r10 && r6 != r11 && r6 != r12
+                    && r6 != r13 && r7 != r8 && r7 != r9 && r7 != r10 && r7 != r11 && r7 != r12
+                    && r7 != r13 && r8 != r9 && r8 != r10 && r8 != r11 && r8 != r12
+                    && r8 != r13 && r9 != r10 && r9 != r11 && r9 != r12
+                    && r9 != r13 && r10 != r11 && r10 != r12 && r10 != r13 && r11 != r12
+                    && r11 != r13 && r12 != r13){
+                vec.append(r1);
+                vec.append(r2);
+                vec.append(r3);
+                vec.append(r4);
+                vec.append(r5);
+                vec.append(r6);
+                vec.append(r7);
+                vec.append(r8);
+                vec.append(r9);
+                vec.append(r10);
+                vec.append(r11);
+                vec.append(r12);
+                vec.append(r13);
+                b = true;
+            }
+        }
+        //droping
+        for(int i = 0; i <= 12; i++){
+            Hen::hens[vec[i]]->drop_Egg();
+        }
     }
 
     // level up ...
@@ -288,6 +403,9 @@ void Game::check_status(){
 
 
 void Game::addEnemy(){
+    //clearing vectors before leveling up
+    Egg::eggs.clear();
+    Hen::hens.clear();
 
     if(level == 1){
         enemy_number = 20;
@@ -318,8 +436,9 @@ void Game::addEnemy(){
                 scene->addItem(chicken);
                 }
                 else{
-                    auto chicken = new Hen(300 + j*170 , -i*120 , i , chicken_time);
-                    scene->addItem(chicken);
+                    auto hen = new Hen(300 + j*170 , -i*120 , i , chicken_time, EnemyDrop_time);
+                    Hen::hens.append(hen);// adding the hen to our hen list
+                    scene->addItem(hen);
                 }
             }
         }
@@ -334,8 +453,9 @@ void Game::addEnemy(){
                 scene->addItem(chicken);
                 }
                 else{
-                    auto chicken = new Hen(180 + j*170 , -i*120 , i , chicken_time);
-                    scene->addItem(chicken);
+                    auto hen = new Hen(180 + j*170 , -i*120 , i , chicken_time, EnemyDrop_time);
+                    Hen::hens.append(hen);// adding the hen to our hen list
+                    scene->addItem(hen);
                 }
             }
         }
@@ -346,12 +466,14 @@ void Game::addEnemy(){
         for(int i = 0 ; i <= 2 ; i++){ // rows
             for(int j = 0 ; j <= 5 ; j++){
                 if(j%2 == 0){
-                auto chicken = new Hen(500 + j*170 , -i*120 , i , chicken_time);
-                scene->addItem(chicken);
+                auto hen = new Hen(500 + j*170 , -i*120 , i , chicken_time, EnemyDrop_time);
+                Hen::hens.append(hen);// adding the hen to our hen list
+                scene->addItem(hen);
                 }
                 else{
-                    auto chicken = new SuperHen(500 + j*170 , -i*120 , i , chicken_time);
-                    scene->addItem(chicken);
+                    auto superhen = new SuperHen(500 + j*170 , -i*120 , i , chicken_time, EnemyDrop_time);
+                    Hen::hens.append(superhen);
+                    scene->addItem(superhen);
                 }
             }
         }
@@ -361,8 +483,9 @@ void Game::addEnemy(){
         enemy_number = 27;
         for(int i = 0 ; i <= 2 ; i++){ // rows
             for(int j = 0 ; j <= 8 ; j++){
-                auto chicken = new SuperHen(275 + j*170 , -i*130 , i , chicken_time);
-                scene->addItem(chicken);
+                auto superhen = new SuperHen(275 + j*170 , -i*130 , i , chicken_time, EnemyDrop_time);
+                Hen::hens.append(superhen);
+                scene->addItem(superhen);
             }
         }
     }

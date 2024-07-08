@@ -15,6 +15,7 @@
 #include "Rocket.h"
 #include "Hen.h"
 #include "SuperHen.h"
+#include "Egg.h"
 
 // this class is actually related to the main game screen
 
@@ -42,6 +43,7 @@ public:
     int collide_time; // saving time_count whenever spaceship collide...
     int lose_time;
     int levelUp_time;
+    int egg_time;
 
     bool isCrashed ;  // for demonstrating spaceship condition(whether it has collided or ..)...
     bool isLost ;
@@ -52,6 +54,7 @@ public:
      QTimer* ship_time;
      QTimer* chicken_time;
      QTimer* game_time;
+     QTimer* EnemyDrop_time;
      QGraphicsTextItem *lives_board;
      QFont *lives_font;
      QGraphicsTextItem *score_board;
@@ -100,8 +103,6 @@ public:
      void lose();
 
      void addEnemy();
-
-
 };
 
 #endif // GAME_H

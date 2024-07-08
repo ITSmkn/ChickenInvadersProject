@@ -1,6 +1,9 @@
 #include "FallingItems.h"
 
-FallingItems::FallingItems()
-{
+FallingItems::FallingItems(QTimer* t) : time(t){
+
+}
+
+void FallingItems::MoveDown(){
 
 }

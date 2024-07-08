@@ -53,6 +53,11 @@ void SpaceShip::detect_collide(){
             // deleting colliding enemy...
             delete collided[i];
 
+            // deleting from our egg droping vector
+            if(typeid(*collided[i]) == typeid(Hen)){
+                 Hen::hens.remove(Hen::hens.indexOf(static_cast<Hen *>(collided[i])));
+            }
+
             //decreasing the number of enemies...
             game->enemy_number -= 1;
             if(game->enemy_number == 0){           // for showing levelUp_board
@@ -79,6 +84,4 @@ void SpaceShip::detect_collide(){
 
    //to change lives  ...
    game->check_status();
-
-
 }

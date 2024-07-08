@@ -4,7 +4,7 @@
 
 extern Game* game;
 
-SuperHen::SuperHen(int X, int Y, int r, QTimer* t) : Enemy(X, Y, r, t){
+SuperHen::SuperHen(int X, int Y, int r, QTimer* t, QTimer* t2) : Hen(X, Y, r, t, t2){
     //setting lives for superhen
     FoeLives = 4;
     setPixmap(QPixmap(":/images/src/images/SuperChicken1.png"));
