@@ -11,6 +11,10 @@ Enemy::Enemy(int x, int y , int r,QTimer* t):X(x),Y(y),rows(r),time(t){
     connect(time,SIGNAL(timeout()),this,SLOT(MoveDown()));
 };
 
+void Enemy::decrease_FoeLives(){
+    --FoeLives;
+}
+
 
 int Enemy::get_FoeLives(){
     return FoeLives;

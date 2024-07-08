@@ -7,6 +7,7 @@
 
 #include "Enemy.h"
 #include "Egg.h"
+#include "Meat.h"
 
 
 class Hen : public Enemy{
@@ -19,7 +20,7 @@ public:
 
     void drop_Egg();
 
-    void decrease_FoeLives() override;
+    void drop_Meat();
 
     static QVector<Hen*> hens;//for save all of the hens to choose randomly for droping eggs
 

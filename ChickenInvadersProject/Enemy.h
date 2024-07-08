@@ -24,7 +24,7 @@ public:
     int get_FoeLives();
 
     //a function to handle enemies lives
-    virtual void decrease_FoeLives() = 0;//(abstract)
+    void decrease_FoeLives();
 
 public slots:
 

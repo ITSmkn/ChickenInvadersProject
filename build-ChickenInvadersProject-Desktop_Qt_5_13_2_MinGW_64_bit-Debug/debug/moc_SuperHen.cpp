@@ -77,7 +77,7 @@ void SuperHen::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
 }
 
 QT_INIT_METAOBJECT const QMetaObject SuperHen::staticMetaObject = { {
-    &Enemy::staticMetaObject,
+    &Hen::staticMetaObject,
     qt_meta_stringdata_SuperHen.data,
     qt_meta_data_SuperHen,
     qt_static_metacall,
@@ -96,12 +96,12 @@ void *SuperHen::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_SuperHen.stringdata0))
         return static_cast<void*>(this);
-    return Enemy::qt_metacast(_clname);
+    return Hen::qt_metacast(_clname);
 }
 
 int SuperHen::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = Enemy::qt_metacall(_c, _id, _a);
+    _id = Hen::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

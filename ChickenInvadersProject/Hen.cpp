@@ -24,12 +24,10 @@ void Hen::wiggle(){
     temp += 1;
 }
 
-void Hen::decrease_FoeLives(){ // droping meat will be added
-
-    --FoeLives;
-    if(FoeLives == 0){
-        delete this;
-    }
+void Hen::drop_Meat(){
+    Meat *meat = new Meat(drop_time);
+    meat->setPos(x() , y()+20);
+    scene()->addItem(meat);
 }
 
 void Hen::drop_Egg(){

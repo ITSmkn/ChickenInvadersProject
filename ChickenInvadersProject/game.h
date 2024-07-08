@@ -16,6 +16,8 @@
 #include "Hen.h"
 #include "SuperHen.h"
 #include "Egg.h"
+#include "Meat.h"
+#include "Prize.h"
 
 // this class is actually related to the main game screen
 
@@ -38,6 +40,7 @@ public slots:
 public:
 
     int enemy_number;
+    int meat_number;
 
     int time_count;   // to count time...
     int collide_time; // saving time_count whenever spaceship collide...
@@ -55,12 +58,18 @@ public:
      QTimer* chicken_time;
      QTimer* game_time;
      QTimer* EnemyDrop_time;
+     QTimer* prize_time;
+
+     // boards ...
      QGraphicsTextItem *lives_board;
      QFont *lives_font;
      QGraphicsTextItem *score_board;
      QFont *score_font;     
      QGraphicsTextItem *levelUp_board;
      QFont *levelUp_font;
+     QGraphicsTextItem *meat_board;
+     QFont *meat_font;
+
      QPushButton* pause;
 
      // Functions...
@@ -91,10 +100,11 @@ public:
      //showing spaceship score(initial setting)
      void show_score();
 
-
      void show_LoseBoard();
 
      void show_levelUpBoard();
+
+     void show_meatBoard();
 
      //it will be used when the spaceship collide or kill enemies(to change textitem)
      void check_status();

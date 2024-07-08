@@ -8,7 +8,7 @@ SuperHen::SuperHen(int X, int Y, int r, QTimer* t, QTimer* t2) : Hen(X, Y, r, t,
     //setting lives for superhen
     FoeLives = 4;
     setPixmap(QPixmap(":/images/src/images/SuperChicken1.png"));
-    connect(time, SIGNAL(timeout()), this, SLOT(wiggle()));
+    connect(time, SIGNAL(timeout()), this, SLOT(SuperHen::wiggle()));
 }
 
 void SuperHen::wiggle(){
@@ -20,11 +20,4 @@ void SuperHen::wiggle(){
     }
 
     ++temp;
-}
-
-void SuperHen::decrease_FoeLives(){
-    --FoeLives;
-    if(FoeLives == 0){
-        delete this;
-    }
 }

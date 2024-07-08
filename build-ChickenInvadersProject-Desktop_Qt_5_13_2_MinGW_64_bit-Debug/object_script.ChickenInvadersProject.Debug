@@ -13,8 +13,12 @@ debug/game.o
 debug/main.o
 debug/qrc_Src.o
 debug/moc_Chicken.o
+debug/moc_Egg.o
 debug/moc_Enemy.o
+debug/moc_FallingItems.o
 debug/moc_Hen.o
+debug/moc_Meat.o
+debug/moc_Prize.o
 debug/moc_Rocket.o
 debug/moc_Spaceship.o
 debug/moc_Start_Menu.o

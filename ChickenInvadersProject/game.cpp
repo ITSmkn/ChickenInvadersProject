@@ -10,15 +10,45 @@ extern Game *game;
 Game::Game(int width , int height):Width(width),Height(height),score(0){
 
     level = 1;
+    meat_number = 0;
+
     time_count = 0;
+
     isCrashed = false;
     isLost = false;
 
- SceneSet();
+    ship_time = new QTimer;
+    chicken_time = new QTimer;
+    EnemyDrop_time = new QTimer;
+    prize_time = new QTimer;
 
- game_time = new QTimer;   //the begining of time counter ...
- connect(game_time,SIGNAL(timeout()),this,SLOT(time_counter()));
- game_time->start(1000);
+    // these timers make their connected functions work every (n) ms ...
+    // giving value to them ...
+    ship_time->start(45);
+    chicken_time->start(125);
+    EnemyDrop_time->start(45);
+    prize_time->start(45);
+
+
+    //setting font
+    lives_font = new QFont("Arial", 25);
+    lives_font->setBold(true);
+
+    score_font = new QFont("Arial", 30);
+    score_font->setBold(true);
+
+    levelUp_font = new QFont("Arial", 40);
+    levelUp_font->setBold(true);
+    levelUp_font->setItalic(true);
+
+    meat_font = new QFont("Arial", 25);
+    meat_font->setBold(true);
+
+    SceneSet();
+
+    game_time = new QTimer;   //the begining of time counter ...
+    connect(game_time,SIGNAL(timeout()),this,SLOT(time_counter()));
+    game_time->start(1000);
 
 }
 
@@ -35,6 +65,8 @@ Game::~Game(){
     delete game_time;
     delete levelUp_board;
     delete levelUp_font;
+    delete meat_board;
+    delete meat_font;
 
 }
 
@@ -58,19 +90,14 @@ void Game::SceneSet(){
     setBackgroundBrush(QPixmap(":/images/src/images/Level2Bg.png"));
     }
 
+    QPixmap image0(":/images/src/images/score.png");
+    QGraphicsPixmapItem* score_pic = new QGraphicsPixmapItem(image0);
+    score_pic->setPos(15,12);
+    scene->addItem(score_pic);
+
     //removing the cursor
     QCursor csr(Qt::BlankCursor);
     setCursor(csr);
-
-    ship_time = new QTimer;
-    chicken_time = new QTimer;
-    EnemyDrop_time = new QTimer;
-
-    // these timers make their connected functions work every (n) ms ...
-    // giving value to them ...
-    ship_time->start(45);
-    chicken_time->start(125);
-    EnemyDrop_time->start(45);
 
     ship = new SpaceShip(ship_time);
     ship->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -78,17 +105,8 @@ void Game::SceneSet(){
 
     scene->addItem(ship);
 
+    // adding enemies according to the level ...
     addEnemy();
-    //setting font
-    lives_font = new QFont("Arial", 25);
-    lives_font->setBold(true);
-
-    score_font = new QFont("Arial", 30);
-    score_font->setBold(true);
-
-    levelUp_font = new QFont("Arial", 40);
-    levelUp_font->setBold(true);
-    levelUp_font->setItalic(true);
 
     //setting boards
     show_lives();
@@ -96,6 +114,12 @@ void Game::SceneSet(){
 
     show_score();
     scene->addItem(score_board);
+
+    // showing meat board after level 2 ...
+    show_meatBoard();
+    if(level > 2){
+    scene->addItem(meat_board);
+    }
 
     //cursor tracker was enabled
     setMouseTracking(true);
@@ -106,7 +130,6 @@ void Game::SceneSet(){
     pause->setGeometry(x() + 1830, y()*2 + 10 , 80 , 80);
     scene->addWidget(pause);
     pause->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-
 
 
     //connect(pause , &QPushButton::clicked , this , &SceneSet::pause_game);
@@ -153,8 +176,6 @@ void Game::set_score(int s){
 
 //other methods
 
-
-
 void Game::time_counter(){
 
     // increasing our counter ...
@@ -182,6 +203,13 @@ void Game::time_counter(){
        setMouseTracking(true);
        isCrashed = false;
     }
+
+    // droping prize
+    if(time_count == 15 && level > 3 ){
+            auto prize = new Prize(prize_time);
+            prize->setPos( rand() % Width , 0);   // giving a random location on scene ..
+            scene->addItem(prize);
+        }
 
     //choosing 3 different numbers (3/12 = 1/4)
     if(time_count % 5 == 0 && level == 3 && Hen::hens.size() >= 3){
@@ -289,7 +317,7 @@ void Game::time_counter(){
     }
 
     // level up ...
-    if(enemy_number == 0){
+    if(enemy_number == 0 && ship->get_lives() > 0){
     ship->setPos(880,800);
     show_levelUpBoard();
     scene->addItem(levelUp_board);
@@ -307,12 +335,6 @@ void Game::time_counter(){
     SceneSet();                // lives = 3
     ship->set_lives(n);        // but the former lives will be set on it
 
-    // if lives = 1 and you collide the last enemy in a particular level
-    if(ship->get_lives() == 0){
-        Start_menu *sm = new Start_menu();
-        sm->show();
-        game->close();
-    }
     }
     }
     }
@@ -393,11 +415,24 @@ void Game::show_score(){
     score_board->setFont(*score_font);
 }
 
+void Game::show_meatBoard()
+{
+    meat_board = new QGraphicsTextItem;
+    meat_board->setPlainText(QString::number(meat_number));
+    meat_board->setPos(260,930);
+    meat_board->setDefaultTextColor(Qt::red);
+    meat_board->setFont(*meat_font);
+
+}
+
+// updating all of the boards ...
 void Game::check_status(){
     //setplaintext() is for when you want to update a text
     lives_board->setPlainText(QString::number(ship->get_lives()));
 
     score_board->setPlainText(QString::number(score));
+
+    meat_board->setPlainText(QString::number(meat_number));
 }
 
 

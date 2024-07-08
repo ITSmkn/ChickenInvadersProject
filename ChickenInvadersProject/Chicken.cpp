@@ -27,9 +27,3 @@ void Chicken::wiggle(){
 
 }
 
-void Chicken::decrease_FoeLives(){
-    --FoeLives;
-    if(FoeLives == 0){
-        delete this;
-    }
-}

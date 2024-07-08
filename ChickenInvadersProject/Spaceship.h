@@ -24,6 +24,7 @@ public:
     Rocket* rocket;
     QTimer* time;
 
+    bool DoubleShot;
     int get_lives();
     void set_lives(int);
     void shoot();
