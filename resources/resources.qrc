@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/chicken1.png</file>
+        <file>images/chicken2.png</file>
+        <file>images/egg.png</file>
+        <file>images/egg2.png</file>
+        <file>images/explosion.png</file>
+        <file>images/hen1.png</file>
+        <file>images/hen2.png</file>
+        <file>images/Level1Bg.png</file>
+        <file>images/Level2Bg.png</file>
+        <file>images/lose.png</file>
+        <file>images/mainBg.png</file>
+        <file>images/meat.png</file>
+        <file>images/prize.png</file>
+        <file>images/Rocket.png</file>
+        <file>images/score.png</file>
+        <file>images/SpaceShip.png</file>
+        <file>images/SuperChicken1.png</file>
+        <file>images/SuperChicken2.png</file>
+        <file>images/win.png</file>
+    </qresource>
+</RCC>

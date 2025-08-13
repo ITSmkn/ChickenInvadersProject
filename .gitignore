@@ -1,0 +1,43 @@
+# Compiled object files
+*.o
+*.obj
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Compiled shared libraries
+*.so
+*.dll
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt Creator/Project files
+*.pro.user*
+*.pro.shared
+*.qbs.user*
+*_plugin_import.cpp
+*_qml_plugin_import.cpp
+
+# Build directories
+build/
+debug/
+release/
+
+# Makefiles
+Makefile*
+makefile*
+
+# Other temporary files
+*.tmp
+*.bak
+*.swp
+*~
